@@ -20,8 +20,8 @@ pipeline {
         SONAR_URL = "http://192.168.1.7:9000"
       }
       steps {
-        withCredentials([string(credentialsId: 'sonar', variable: 'sonar')]) {
-          sh 'cd java-maven-sonar-argocd-helm-k8s/spring-boot-app && mvn sonar:sonar -Dsonar.login=sonar -Dsonar.host.url=${SONAR_URL}'
+        withCredentials([string(credentialsId: 'nanda', variable: 'nanda')]) {
+          sh 'cd java-maven-sonar-argocd-helm-k8s/spring-boot-app && mvn sonar:sonar -Dsonar.login=nanda -Dsonar.host.url=${SONAR_URL}'
         }
       }
     }
@@ -49,8 +49,8 @@ pipeline {
         steps {
             withCredentials([string(credentialsId: 'gitOps', variable: 'gitOps')]) {
                 sh '''
-                    git config user.email "abhishek.xyz@gmail.com"
-                    git config user.name "Abhishek Veeramalla"
+                    git config user.email "shaikabbas290@gmail.com"
+                    git config user.name "ShaikAbbas2092"
                     BUILD_NUMBER=${BUILD_NUMBER}
                     sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml
                     git add java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml
